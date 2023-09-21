@@ -18,8 +18,27 @@ namespace ProductReviewWebAPI.Controllers
         }
         // GET: api/<ProductsController>
         [HttpGet]
-        public IActionResult GetAllProducts()
+        public IActionResult GetAllProducts([FromQuery] double? maxprice)
         {
+            if(maxprice != null)
+            {
+                var pricedProducts = _context.Products.Select(p => new ProductDTO
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    Reviews = p.Reviews.Select(r => new ReviewDTO
+                    {
+                        Id = r.Id,
+                        Text = r.Text,
+                        Rating = r.Rating
+
+                    }).ToList(),
+                    AverageRating = Math.Round(p.Reviews.Select(r => r.Rating).ToArray().Average(), 1)
+                }).Where(p=>p.Price<=maxprice).ToList();
+                return Ok(pricedProducts);
+
+            }
             var products = _context.Products.Select(p => new ProductDTO
             {
                 Id = p.Id,
