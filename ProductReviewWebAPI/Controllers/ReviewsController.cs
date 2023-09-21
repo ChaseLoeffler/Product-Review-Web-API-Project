@@ -51,8 +51,24 @@ namespace ProductReviewWebAPI.Controllers
 
         // PUT api/<ReviewsController>/5
         [HttpPut("{id}")]
-        public void UpdateReview(int id, [FromBody] string value)
+        public IActionResult UpdateReview(int id, [FromBody] Review review)
         {
+            var upReview = _context.Reviews.FirstOrDefault(r => r.Id == id);
+            if(upReview == null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                upReview.Text = review.Text;
+                upReview.Rating = review.Rating;
+                upReview.ProductId = review.ProductId;
+
+                _context.SaveChanges();
+
+                return StatusCode(200, upReview);
+            }
+            return BadRequest(ModelState);
         }
 
         // DELETE api/<ReviewsController>/5
