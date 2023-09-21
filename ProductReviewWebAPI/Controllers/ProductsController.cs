@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProductReviewWebAPI.Data;
+using ProductReviewWebAPI.DTOs;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,9 +18,23 @@ namespace ProductReviewWebAPI.Controllers
         }
         // GET: api/<ProductsController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult GetAllProducts()
         {
-            return new string[] { "value1", "value2" };
+            var products = _context.Products.Select(p => new ProductDTO
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                Reviews = p.Reviews.Select(r => new ReviewDTO
+                {
+                    Id = r.Id,
+                    Text = r.Text,
+                    Rating = r.Rating
+
+                }).ToList(),
+                AverageRating = Math.Round(p.Reviews.Select(r => r.Rating).ToArray().Average(),1)
+            }).ToList();
+            return Ok(products);
         }
 
         // GET api/<ProductsController>/5
