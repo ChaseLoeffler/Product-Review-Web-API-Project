@@ -21,7 +21,7 @@ namespace ProductReviewWebAPI.Controllers
 
         // GET: api/<ReviewsController>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAllReviews()
         {
             var reviews = _context.Reviews.ToList();
             return Ok(reviews);
@@ -29,9 +29,14 @@ namespace ProductReviewWebAPI.Controllers
 
         // GET api/<ReviewsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult GetReviewById(int id)
         {
-            return "value";
+            var review = _context.Reviews.Find(id);
+            if (review == null)
+            {
+                return NotFound();
+            }
+            return Ok(review);
         }
 
         // POST api/<ReviewsController>
