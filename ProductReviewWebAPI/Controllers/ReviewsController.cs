@@ -40,6 +40,18 @@ namespace ProductReviewWebAPI.Controllers
             return Ok(review);
         }
 
+        // GET api/Reviews/ByProduct/1
+        [HttpGet("ByProduct/{id}")]
+        public IActionResult GetReviewByProductId(int id)
+        {
+            var review = _context.Reviews.Where(r=>r.ProductId==id).ToList();
+            if (review == null)
+            {
+                return NotFound();
+            }
+            return Ok(review);
+        }
+
         // POST api/Reviews
         [HttpPost]
         public IActionResult CreateReview([FromBody] Review review)
