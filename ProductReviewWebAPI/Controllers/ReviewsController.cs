@@ -20,7 +20,7 @@ namespace ProductReviewWebAPI.Controllers
             _context = context;
         }
 
-        // GET: api/<ReviewsController>
+        // GET: api/Reviews
         [HttpGet]
         public IActionResult GetAllReviews()
         {
@@ -28,7 +28,7 @@ namespace ProductReviewWebAPI.Controllers
             return Ok(reviews);
         }
 
-        // GET api/<ReviewsController>/5
+        // GET api/Reviews/5
         [HttpGet("{id}")]
         public IActionResult GetReviewById(int id)
         {
@@ -40,7 +40,7 @@ namespace ProductReviewWebAPI.Controllers
             return Ok(review);
         }
 
-        // POST api/<ReviewsController>
+        // POST api/Reviews
         [HttpPost]
         public IActionResult CreateReview([FromBody] Review review)
         {
@@ -49,7 +49,7 @@ namespace ProductReviewWebAPI.Controllers
             return StatusCode(201, review);
         }
 
-        // PUT api/<ReviewsController>/5
+        // PUT api/Reviews/5
         [HttpPut("{id}")]
         public IActionResult UpdateReview(int id, [FromBody] Review review)
         {
@@ -71,10 +71,18 @@ namespace ProductReviewWebAPI.Controllers
             return BadRequest(ModelState);
         }
 
-        // DELETE api/<ReviewsController>/5
+        // DELETE api/Reviews/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult DeleteReview(int id)
         {
+            var review = _context.Reviews.Find(id);
+            if (review == null)
+            {
+                return NotFound();
+            }
+            _context.Reviews.Remove(review);
+            _context.SaveChanges();
+            return NoContent();
         }
     }
 }
