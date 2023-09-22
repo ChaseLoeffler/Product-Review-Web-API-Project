@@ -119,8 +119,16 @@ namespace ProductReviewWebAPI.Controllers
 
         // DELETE api/Products/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult DeleteProduct(int id)
         {
+            var product = _context.Products.Find(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+            return NoContent();
         }
     }
 }
