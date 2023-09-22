@@ -1,0 +1,352 @@
+{
+	"info": {
+		"_postman_id": "306f4412-3b3d-458e-bc01-61573197d856",
+		"name": "ASPNET_ProductReview_WebAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29693947"
+	},
+	"item": [
+		{
+			"name": "Review_Endpoints",
+			"item": [
+				{
+					"name": "Get_All_Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7114/api/Reviews",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7114",
+							"path": [
+								"api",
+								"Reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Review_By_Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7114/api/Reviews/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7114",
+							"path": [
+								"api",
+								"Reviews",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Review_By_Product_Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7114/api/Reviews/ByProduct/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7114",
+							"path": [
+								"api",
+								"Reviews",
+								"ByProduct",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Review",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Text\": \"Great Product!\",\r\n    \"Rating\": 5,\r\n    \"ProductId\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7114/api/Reviews",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7114",
+							"path": [
+								"api",
+								"Reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Review",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Bad Product!\",\r\n    \"rating\": 1,\r\n    \"productId\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7114/api/Reviews/16",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7114",
+							"path": [
+								"api",
+								"Reviews",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Review",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7114/api/Reviews/16",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7114",
+							"path": [
+								"api",
+								"Reviews",
+								"16"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product_Endpoints",
+			"item": [
+				{
+					"name": "Get_All_Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7114/api/Products",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7114",
+							"path": [
+								"api",
+								"Products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Product_By_Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7114/api/Products/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7114",
+							"path": [
+								"api",
+								"Products",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_All_By_Price",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7114/api/Products?maxprice=23",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7114",
+							"path": [
+								"api",
+								"Products"
+							],
+							"query": [
+								{
+									"key": "maxprice",
+									"value": "23"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"Nintendo Switch\",\r\n    \"Price\": 299\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7114/api/Products",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7114",
+							"path": [
+								"api",
+								"Products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"Nintendo Switch\",\r\n    \"Price\": 250.99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7114/api/Products/6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7114",
+							"path": [
+								"api",
+								"Products",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7114/api/Products/7",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7114",
+							"path": [
+								"api",
+								"Products",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
